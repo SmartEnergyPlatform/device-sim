@@ -1,0 +1,115 @@
+<!doctype html>
+<html ng-app="devicesimGui">
+<head>
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/css/angular-material.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/css/ngDialog.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/css/ngDialog-theme-plain.min.css"/>
+
+    <script src="/public/js/angular.min.js"></script>
+    <script src="/public/js/angular-animate.min.js"></script>
+    <script src="/public/js/angular-aria.min.js"></script>
+    <script src="/public/js/angular-messages.min.js"></script>
+    <script src="/public/js/angular-material.min.js"></script>
+
+    <script src="/public/js/angular-file-input.min.js"></script>
+    <script src="/public/js/ngDialog.min.js"></script>
+
+    <script src="/public/js/ui-bootstrap-tpls-1.3.2.min.js"></script>
+
+    <script src="/public/js/ace/ace.js"></script>
+    <script src="/public/js/ace/ext-language_tools.js"></script>
+    <script src="/public/js/ui-ace.min.js"></script>
+
+    <script src="/public/js/main.js"></script>
+    <script src="/public/js/monitoring.js"></script>
+    <script src="/public/js/sensor.js"></script>
+    <script src="/public/js/actuator.js"></script>
+    <script src="/public/js/graph.js"></script>
+</head>
+<body>
+
+<div ng-cloak class="tabs">
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Sensor">
+                <md-content class="md-padding">
+                    <sensor></sensor>
+                </md-content>
+            </md-tab>
+            <md-tab label="Actuator">
+                <md-content class="md-padding">
+                    <actuator></actuator>
+                </md-content>
+            </md-tab>
+            <md-tab label="Graph">
+                <md-content class="md-padding">
+                    <graph></graph>
+                </md-content>
+            </md-tab>
+            <md-tab label="Help">
+                <md-content class="md-padding">
+                    <h2>Sensor Content</h2>
+                    <p>
+                        the system provides some convenience functions for use in the content code
+                    </p>
+                    <h3>Graph</h3>
+                    <ul>
+                        <li>graph(id).f(x)</li>
+                        <li>graph(id).interval(min, max).f(x)</li>
+                        <li>graph(id).secInMin()</li>
+                        <li>graph(id).secInHour()</li>
+                        <li>graph(id).secInDay()</li>
+                        <li>graph(id).minInHour()</li>
+                        <li>graph(id).minInDay()</li>
+                        <li>graph(id).hourInDay()</li>
+                    </ul>
+                    <p>
+                        code completion helps to find existing graph ids
+                    </p>
+                    <p>
+                        Example: graph("329ccbe2-1cd5-2172-604d-d1063cbf6bfb").interval(1, 9).f(count)
+                    </p>
+
+                    <h3>Random</h3>
+                    <p>
+                        random(min, max, decimalPlaces)
+                    </p>
+
+
+                    <h2>Sensor Format</h2>
+                    <p>code completion helps to find a placeholder for timestamps, thouse placeholders will be filled by the system and not the user</p>
+                    <ul>
+                        <li>
+                            <p>caption: "TIME_STAMP (e.g. 1478014571168)"</p>
+                            <p ng-non-bindable>value: "{{{TIME_STAMP}}}"</p>
+                        </li>
+                        <li>
+                            <p>caption: "TIME_UTC (e.g. Tue, 01 Nov 2016 15:43:09 GMT)"</p>
+                            <p ng-non-bindable>value: "{{{TIME_UTC}}}"</p>
+                        </li>
+                        <li>
+                            <p>caption: "TIME_ISO (e.g. 2016-11-01T15:39:15.378Z)"</p>
+                            <p ng-non-bindable>value: "{{{TIME_ISO}}}"</p>
+                        </li>
+                        <li>
+                            <p>caption: "TIME_STRING (e.g. Tue Nov 01 2016 16:35:56 GMT+0100 (CET))"</p>
+                            <p ng-non-bindable>value: "{{{TIME_STRING}}}"</p>
+                        </li>
+                        <li>
+                            <p>caption: "TIME_DATE (e.g. Tue Nov 01 2016)"</p>
+                            <p ng-non-bindable>value: "{{{TIME_DATE}}}"</p>
+                        </li>
+                        <li>
+                            <p>caption: "TIME_TIME (e.g. 16:41:43 GMT+0100 (CET))"</p>
+                            <p ng-non-bindable>value: "{{{TIME_TIME}}}"</p>
+                        </li>
+                    </ul>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+    <monitoring></monitoring>
+</div>
+</body>
+</html>

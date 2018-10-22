@@ -1,0 +1,33 @@
+[
+  {
+    "type": "REST-CLIENT",
+    "conf": {
+      "method": "POST",
+      "url": "http://localhost:8081/test/test",
+      "headers": {}
+    }
+  },
+  {
+    "type": "REST-SERVER",
+    "conf": {
+      "method": "GET",
+      "path": "/test/test"
+    }
+  },
+  {
+    "type": "COAP-CLIENT",
+    "conf": {
+      "method": "POST",
+      "url": "coap://localhost:8081/test/test",
+      "headers": {},
+      "confirmable": false
+    }
+  },
+  {
+    "type": "COAP-SERVER",
+    "conf": {
+      "method": "GET",
+      "path": "/test/test"
+    }
+  }
+]

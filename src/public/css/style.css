@@ -1,0 +1,367 @@
+.monitor-multiline span {
+    margin-left: 160px;
+    display: block;
+}
+
+.activeate-button input[type=checkbox] + label {
+    background-color: #e7e7e7;
+    border: none;
+    color: black;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.activeate-button input[type=checkbox] + label{
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.activ-true {
+    color: green;
+}
+
+.acutator-state{
+    margin: 10px;
+}
+
+.actuator-state-span {
+    display: inline;
+    margin-right: 25px;
+}
+
+.actuator-response{
+    min-height: 18px;
+    height: 18px;
+    border: none;
+    padding: 5px;
+}
+
+.actuator-state-span input {
+    border: none;
+    height: 18px;
+    padding: 5px;
+}
+
+.actuator-state-span button{
+    background-color: #e7e7e7;
+    border: none;
+    color: black;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.acutator-state input[type=checkbox] + label {
+    background-color: #e7e7e7;
+    border: none;
+    color: black;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.acutator-state input[type=checkbox]:not(:checked) + label{
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.acutator-state input[type=checkbox]:checked + label {
+    background-color: lightgreen;
+    /* box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); */
+}
+
+.adopt-checkbox{
+    display: none;
+}
+
+.ace_editor  {
+    height : 200px;
+    font-size: 11pt !important;
+}
+
+.monitoring-logs {
+    height: 200px;
+    overflow: auto;
+    background: white;
+    color: black;
+    padding: 10px;
+}
+
+.sensor-monitoring > div {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.tabs md-content {
+    background-color: transparent !important; }
+.tabs md-content md-tabs {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1; }
+.tabs md-content md-tabs md-tabs-wrapper {
+    background: white; }
+.tabs md-content h1:first-child {
+    margin-top: 0; }
+
+md-tabs {
+    transition: none !important;
+}
+
+.device-id{
+    width: 350px;
+}
+
+.sensor-timing > div{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.protocol-config input {
+    width: 500px;
+}
+
+.protocol-config input.short {
+    width: 300px;
+}
+
+.protocol-config input[type=number] {
+    width: 100px;
+}
+
+.protocol-config > div {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.generic-device > div {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 15px;
+}
+
+.generic-device md-tabs {
+    border: 0px !important;
+}
+
+.generic-device{
+    background-color: #f1f1f1;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+}
+
+.generic-device-add{
+    background-color: #f1f1f1;
+    margin: 20px 0;
+    padding-top: 7px;
+    padding-right: 16px;
+    padding-bottom: 7px;
+    padding-left: 16px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;
+}
+
+
+.generic-device textarea:not(.actuator-response){
+    min-height: 100px;
+    width: 100%;
+    padding: 5px;
+    border: 0px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 11pt;
+}
+
+/* for angularjs bootstrap */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+
+/* bootstrap parts */
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.modal-open {
+  overflow: hidden;
+}
+.modal {
+  display: none;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+.modal.fade .modal-dialog {
+  -webkit-transform: translate(0, -25%);
+  -ms-transform: translate(0, -25%);
+  -o-transform: translate(0, -25%);
+  transform: translate(0, -25%);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  -o-transition: -o-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+}
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 10px;
+}
+.modal-content {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #999999;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  outline: 0;
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000000;
+}
+.modal-backdrop.fade {
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.modal-backdrop.in {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.modal-header {
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.modal-header .close {
+  margin-top: -2px;
+}
+.modal-title {
+  margin: 0;
+  line-height: 1.42857143;
+}
+.modal-body {
+  position: relative;
+  padding: 15px;
+}
+.modal-footer {
+  padding: 15px;
+  text-align: right;
+  border-top: 1px solid #e5e5e5;
+}
+.modal-footer .btn + .btn {
+  margin-left: 5px;
+  margin-bottom: 0;
+}
+.modal-footer .btn-group .btn + .btn {
+  margin-left: -1px;
+}
+.modal-footer .btn-block + .btn-block {
+  margin-left: 0;
+}
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 600px;
+    margin: 30px auto;
+  }
+  .modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  .modal-sm {
+    width: 300px;
+  }
+}
+@media (min-width: 992px) {
+  .modal-lg {
+    width: 900px;
+  }
+}
+.clearfix:before,
+.clearfix:after,
+.modal-header:before,
+.modal-header:after,
+.modal-footer:before,
+.modal-footer:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after,
+.modal-header:after,
+.modal-footer:after {
+  clear: both;
+}
+
+
+canvas {
+    cursor: crosshair;
+}
+
+.inline {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 50px;
+}
+
+.inline input, .inline button{
+    margin: 2px;
+}

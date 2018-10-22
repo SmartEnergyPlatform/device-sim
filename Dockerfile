@@ -1,0 +1,4 @@
+FROM node:onbuild
+EXPOSE 8080
+EXPOSE 5683/udp
+EXPOSE 5000

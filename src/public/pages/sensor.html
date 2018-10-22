@@ -1,0 +1,188 @@
+<div ng-init="$ctrl.devices=[];">
+    <div class="genDevice-btn-group">
+        <button type="button" class="btn btn-default" ng-click="$ctrl.readFromServer()">Load</button>
+        <button type="button" class="btn btn-default" ng-click="$ctrl.writeToServer()">Save</button>
+
+        <button type="button" class="btn btn-default" ng-click="$ctrl.import()">Import</button>
+        <button type="button" class="btn btn-default" ng-click="$ctrl.export()">Export</button>
+        <button type="button" class="btn btn-default" ng-click="$ctrl.clear()">Clear</button>
+    </div>
+    <div class="generic-devices">
+        <h3>Sensors</h3>
+        <div ng-cloak class="generic-device" ng-repeat="device in $ctrl.devices">
+            <md-content>
+                <md-tabs md-dynamic-height md-border-bottom md-selected="device.selectedIndex">
+                    <md-tab md-on-select="$ctrl.onTabSelected(device)" label="{{device.data.displayName && device.data.displayName != '' ? device.data.displayName : device.data.id}}">
+                        <md-content>
+                        </md-content>
+                    </md-tab>
+                    <md-tab md-on-select="$ctrl.onTabSelected(device)">
+                        <md-tab-labe>
+                            <span class="activ-{{device.data.active ? 'true' : 'false'}}">{{device.data.active ? 'Active' : 'Inactive'}}</span>
+                        </md-tab-labe>
+                        <md-tab-body>
+                            <md-content class="md-padding">
+                                <div class="activeate-button">
+                                    <input class="adopt-checkbox" type="checkbox" id="activate_{{device.data.id}}" ng-true-value="true" ng-false-value="false" ng-change="$ctrl.updateDevice(device)" ng-model="device.data.active">
+                                    <label for="activate_{{device.data.id}}">{{device.data.active ? 'Deactivate' : 'Activate'}}</label>
+                                </div>
+                            </md-content>
+                        </md-tab-body>
+                    </md-tab>
+                    <md-tab md-on-select="$ctrl.onTabSelected(device)" label="Timing: {{device.data.interval.value}} {{device.data.interval.unit}}">
+                        <md-content class="md-padding sensor-timing">
+                            <div>
+                                <div>
+                                    <label>
+                                        Interval Unit Type
+                                    </label>
+                                </div>
+                                <div>
+                                    <select  ng-model="device.data.interval.unit">
+                                        <option value="seconds">Seconds</option>
+                                        <option value="milliseconds">Milliseconds</option>
+                                        <option value="minutes">Minutes</option>
+                                        <option value="hours">Hours</option>
+                                        <option value="days">Days (max 24)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <label>
+                                        Interval Value
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="number" name="interval" ng-model="device.data.interval.value" />
+                                </div>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab md-on-select="$ctrl.onTabSelected(device)" label="Protocol: {{device.data.protocolConf.type}} {{device.data.protocolConf.conf.method}}">
+                        <md-content class="md-padding protocol-config">
+                            <div>
+                                <div>Protocol-Type</div>
+                                <select ng-change="$ctrl.changeProtocolType(device)" ng-model="device.data.protocolConf.type">
+                                    <option value="HTTP-CLIENT">HTTP-CLIENT</option>
+                                    <option value="REST-CLIENT">REST-CLIENT</option>
+                                    <option value="MQTT-PRODUCER">MQTT-PRODUCER</option>
+                                    <option value="REST-SERVER">REST-SERVER</option>
+                                    <option value="COAP-CLIENT">COAP-CLIENT</option>
+                                    <option value="COAP-SERVER">COAP-SERVER</option>
+                                </select>
+                            </div>
+                            <div ng-if="device.data.protocolConf.conf.method !== undefined">
+                                <div>Method</div>
+                                <select  ng-model="device.data.protocolConf.conf.method">
+                                    <option value="get">GET</option>
+                                    <option value="post">POST</option>
+                                    <option value="put">PUT</option>
+                                </select>
+                            </div>
+                            <div ng-if="device.data.protocolConf.conf.path !== undefined" >
+                                <div>Path</div>
+                                <input type="text" ng-model="device.data.protocolConf.conf.path">
+                            </div>
+                            <div ng-if="device.data.protocolConf.conf.url !== undefined" >
+                                <div>URL</div>
+                                <input type="text" ng-model="device.data.protocolConf.conf.url">
+                            </div>
+                            <div ng-if="device.data.protocolConf.conf.topic !== undefined" >
+                                <div>Topic</div>
+                                <input class="short" type="text" ng-model="device.data.protocolConf.conf.topic">
+                            </div>
+                            <div ng-if="device.data.protocolConf.conf.response_topic !== undefined" >
+                                <div>Response-Topic</div>
+                                <input class="short" type="text" ng-model="device.data.protocolConf.conf.response_topic">
+                            </div>
+                            <div ng-if="device.data.protocolConf.conf.qos !== undefined" >
+                                <div>QoS Level</div>
+                                <input type="number" ng-model="device.data.protocolConf.conf.qos">
+                            </div>
+                            <div ng-if="device.data.protocolConf.conf.user !== undefined" >
+                                <div>User</div>
+                                <input type="text" ng-model="device.data.protocolConf.conf.user">
+                            </div>
+                            <div ng-if="device.data.protocolConf.conf.pw !== undefined" >
+                                <div>Password</div>
+                                <input type="text" ng-model="device.data.protocolConf.conf.pw">
+                            </div>
+                            <div ng-if="device.data.protocolConf.conf.headers !== undefined">
+                                <div>Content-Type</div>
+                                <select ng-model="device.data.protocolConf.conf.headers['Content-Type']">
+                                    <option value="text/plain">text/plain</option>
+                                    <option value="application/json">application/json</option>
+                                    <option value="text/comma-separated-values">text/comma-separated-values</option>
+                                    <option value="text/xml">text/xml</option>
+                                </select>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab md-on-select="$ctrl.onTabSelected(device)" label="Content">
+                        <md-content class="md-padding">
+                            <div    ui-ace="{
+                                              useWrapMode : true,
+                                              showGutter: true,
+                                              mode: 'javascript',
+                                              onLoad: device.contentAceLoad,
+                                              onChange: device.contentAceChange,
+                                              advanced: {
+                                                  enableSnippets: true,
+                                                  enableBasicAutocompletion: true,
+                                                  enableLiveAutocompletion: true
+                                              }
+                                            }" ></div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab md-on-select="$ctrl.onTabSelected(device)" label="Format">
+                        <md-content class="md-padding">
+                            <div    ui-ace="{
+                                              useWrapMode : true,
+                                              showGutter: true,
+                                              onLoad: device.formatAceLoad,
+                                              onChange: device.formatAceChange,
+                                              advanced: {
+                                                  enableSnippets: true,
+                                                  enableBasicAutocompletion: true,
+                                                  enableLiveAutocompletion: true
+                                              }
+                                            }" ></div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab md-on-select="$ctrl.onTabSelected(device)" label="Name">
+                        <md-content class="md-padding">
+                            <div>
+                                ID: {{device.data.id}}
+                            </div>
+                            <div>
+                                Displayed Name: <input class="device-id" ng-model="device.data.displayName"/>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab md-on-deselect="$ctrl.deactivateMonitoring(device)" md-on-select="$ctrl.onTabSelected(device); $ctrl.activateMonitoring(device)" label="Monitoring">
+                        <md-content class="md-padding sensor-monitoring">
+                            <div>
+                                last message: {{device.currentValue}}
+                            </div>
+                            <div class="monitoring-logs">
+                                <div class="log" ng-repeat="log in device.logs">{{log.time}} | {{log.topic === "msg_send" ? "message: " : ""}}{{log.topic === "protocol_error" ? "error: " : ""}}{{log.msg}}</div>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab md-on-select="$ctrl.onTabSelected(device)" label="Delete">
+                        <md-content class="md-padding">
+                            <button type="button" class="btn btn-default" ng-click="$ctrl.removeDevice(device)">Remove Device</button>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Save" md-on-select="$ctrl.updateDevice(device)">
+                        <md-content class="md-padding">
+                            {{device.savingState}}
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-content>
+        </div>
+        <div class="generic-device-add addButton" ng-click="$ctrl.addDevice()">+</div>
+    </div>
+</div>

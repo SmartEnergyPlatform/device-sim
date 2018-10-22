@@ -1,0 +1,94 @@
+<div ng-init="$ctrl.graphs=[];">
+    <div class="genGraph-btn-group">
+        <button type="button" class="btn btn-default" ng-click="$ctrl.readFromServer()">Load</button>
+        <button type="button" class="btn btn-default" ng-click="$ctrl.writeToServer()">Save</button>
+
+        <button type="button" class="btn btn-default" ng-click="$ctrl.import()">Import</button>
+        <button type="button" class="btn btn-default" ng-click="$ctrl.export()">Export</button>
+        <button type="button" class="btn btn-default" ng-click="$ctrl.clear()">Clear</button>
+    </div>
+    <div class="generic-devices">
+        <h3>Graphs</h3>
+        <div ng-cloak class="generic-device" ng-repeat="graph in $ctrl.graphs">
+            <md-content>
+                <md-tabs md-dynamic-height md-border-bottom md-selected="graph.selectedIndex">
+                    <md-tab md-on-select="$ctrl.onTabSelected(graph)" label="{{graph.displayName && graph.displayName != '' ? graph.displayName : graph.id}}">
+                        <md-content>
+                        </md-content>
+                    </md-tab>
+                    <md-tab md-on-select="$ctrl.onTabSelected(graph)" label="Name">
+                        <md-content class="md-padding">
+                            <div>
+                                ID: {{graph.id}}
+                            </div>
+                            <div>
+                                Displayed Name: <input class="graph-id" ng-model="graph.displayName"/>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab md-on-select="$ctrl.onTabSelected(graph)" label="Config">
+                        <md-content class="md-padding">
+                            <div>
+                                xmin: <input type="number" ng-model="graph.config.minX" />
+                            </div>
+                            <div>
+                                xmax: <input type="number" ng-model="graph.config.maxX" />
+                            </div>
+                            <div>
+                                ymin: <input type="number" ng-model="graph.config.minY" />
+                            </div>
+                            <div>
+                                ymax: <input type="number" ng-model="graph.config.maxY" />
+                            </div>
+                            <div>
+                                default_y: <input type="number" ng-model="graph.config.defaultY" />
+                            </div>
+                            <div>
+                                unitsPerTick: <input type="number" ng-model="graph.config.unitsPerTick" />
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab md-on-select="$ctrl.onTabSelected(graph); graph.rescale()" label="Graph">
+                        <md-content class="md-padding">
+                            <canvas class="inline" id="{{graph.id}}" width="800" height="500" elem-ready="graph.init()"></canvas>
+                            <div class="inline">
+                                <button ng-click="$ctrl.undo(graph)">Undo</button>
+                                <button ng-click="$ctrl.redo(graph)">Redo</button>
+                                <div>
+                                    xmin: <input type="number" ng-change="graph.redraw()" ng-model="graph.shadow.min" />
+                                </div>
+                                <div>
+                                    xmax: <input type="number" ng-change="graph.redraw()" ng-model="graph.shadow.max" />
+                                </div>
+                                <div>
+                                    modx: <input type="number" ng-change="graph.redraw()" ng-model="graph.shadow.modx" />
+                                </div>
+                                <div>
+                                    mody: <input type="number" ng-change="graph.redraw()" ng-model="graph.shadow.mody" />
+                                </div>
+                                <div>
+                                    f(x): <input type="text" ng-change="graph.redraw()" ng-model="graph.shadow.func" />
+                                </div>
+                                <div>
+                                    <button ng-click="graph.useShadow()">use function</button>
+                                </div>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab md-on-select="$ctrl.onTabSelected(graph)" label="Delete">
+                        <md-content class="md-padding">
+                            <button type="button" class="btn btn-default" ng-click="$ctrl.removeGraph(graph)">Remove Graph</button>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Save" md-on-select="$ctrl.updateGraph(graph)">
+                        <md-content class="md-padding">
+                            {{graph.savingState}}
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-content>
+        </div>
+
+        <div class="generic-device-add addButton" ng-click="$ctrl.addGraph()">+</div>
+    </div>
+</div>

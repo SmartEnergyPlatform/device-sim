@@ -1,0 +1,47 @@
+{
+    "id": "/devicesim/devicesim2",
+    "cpus": 0.1,
+    "mem": 128.0,
+    "container": {
+    	"type": "DOCKER",
+    	"docker": {
+    		"image": "seplci.wifa.intern.uni-leipzig.de/devicesim2:unstable",
+    		"network": "BRIDGE",
+    		"portMappings": [
+		        {
+		          "containerPort": 5000,
+		          "hostPort": 0,
+		          "protocol": "tcp",
+		          "name": "ui"
+		        },
+		        {
+		          "containerPort": 8080,
+		          "hostPort": 0,
+		          "protocol": "tcp",
+		          "name": "rest-endpoints"
+		        }, 
+		        {
+		          "containerPort": 5683,
+		          "hostPort": 0,
+		          "protocol": "udp",
+		          "name": "coap-endpoints"
+		        }
+      		],
+      		"forcePullImage": true
+    	}
+    },
+    "healthChecks": [
+    	{
+    		"path": "/",
+      		"protocol": "HTTP",
+      		"portIndex": 0,
+    	}
+  	],
+    "labels": {
+    	"HAPROXY_GROUP": "external"
+    },
+    "env": {
+    	"MONGO": "mongodb://seplmaster.wifa.intern.uni-leipzig.de:10001",
+    	"PORT": "5000"
+    }
+}
